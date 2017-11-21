@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Component } from '@angular/core';
 import { PipNavPartService, SidenavHeader } from 'pip-webui2-nav';
-import { PipSidenavService, PipMediaService, MediaMainChange } from 'pip-webui2-layouts';
+import { PipSidenavService, PipMediaService, MediaMainChange, PipRightnavService } from 'pip-webui2-layouts';
 
 @Component({
   selector: 'navparts-example',
@@ -34,7 +34,8 @@ export class NavPartsExampleComponent {
   constructor(
     private navparts: PipNavPartService,
     private sidenav: PipSidenavService,
-    private mainMedia: PipMediaService
+    private mainMedia: PipMediaService,
+    private rightnav: PipRightnavService
   ) {
     this.mainMedia.asObservableMain().subscribe((change: MediaMainChange) => {
       this.navparts.updateProp(this.appbarIconPartName, 'icon', change.aliases.includes('xs') || change.aliases.includes('sm') ? this.xsIcon : this.gtXsIcon);
@@ -58,7 +59,7 @@ export class NavPartsExampleComponent {
       actions: [
         {
           icon: 'notifications', click: () => {
-            console.log('clicked on "Notifications"');
+            this.rightnav.toggleRightnav();
           }
         },
         {

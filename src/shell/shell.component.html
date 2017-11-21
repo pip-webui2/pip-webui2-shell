@@ -4,6 +4,7 @@
       <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
     </pip-floating-sidenav>
     <pip-floating-rightnav style="font-family: Roboto;" fxLayout="column">
+        <ng-content select="shell-rightnav"></ng-content>
     </pip-floating-rightnav>
     <pip-root-content>
       <pip-appbar [ngSwitch]="showIcon$ | async">
@@ -19,7 +20,7 @@
           <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
         </pip-fixed-sidenav>
         <pip-main-content>
-          <router-outlet></router-outlet>
+            <ng-content select="shell-content"></ng-content>
         </pip-main-content>
       </pip-main>
     </pip-root-content>
