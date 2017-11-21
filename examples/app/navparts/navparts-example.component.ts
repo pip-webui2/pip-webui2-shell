@@ -77,7 +77,7 @@ export class NavPartsExampleComponent {
     this.navparts.updatePartByName(this.appbarSecondaryActionsPartName, this.isSecondaryActionsShown, {
       actions: [
         { title: 'Title 1' },
-        { title: 'Title 2' }
+        { title: 'Title 4' }
       ]
     });
 
