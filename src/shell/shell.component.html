@@ -1,11 +1,12 @@
 <pip-root>
-    <pip-floating-sidenav style="height: 100%">
+    <pip-sidenav-floating style="height: 100%">
       <pip-sidenav-header *pipNavPart="'sidenav-header'" [pipNavPartName]="'sidenav-header'"></pip-sidenav-header>
       <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
-    </pip-floating-sidenav>
-    <pip-floating-rightnav style="font-family: Roboto;" fxLayout="column">
+      <ng-content select="shell-sidenav-floating"></ng-content>
+    </pip-sidenav-floating>
+    <pip-rightnav-floating style="font-family: Roboto;" fxLayout="column">
         <ng-content select="shell-rightnav"></ng-content>
-    </pip-floating-rightnav>
+    </pip-rightnav-floating>
     <pip-root-content>
       <pip-appbar [ngSwitch]="showIcon$ | async">
         <pip-appbar-icon *pipNavPart="'appbar-icon'" [pipNavPartName]="'appbar-icon'"> </pip-appbar-icon>
@@ -13,12 +14,14 @@
         <div fxFlex="grow"></div>
         <pip-appbar-primary-actions *pipNavPart="'appbar-primary-actions'" [pipNavPartName]="'appbar-primary-actions'"> </pip-appbar-primary-actions>
         <pip-appbar-secondary-actions *pipNavPart="'appbar-secondary-actions'" [pipNavPartName]="'appbar-secondary-actions'"></pip-appbar-secondary-actions>
+        <ng-content select="shell-appbar"></ng-content>
       </pip-appbar>
       <pip-main fxFlex="grow" pipContainer=".content">
-        <pip-fixed-sidenav style="height: 100%">
+        <pip-sidenav-fixed style="height: 100%">
           <pip-sidenav-header *pipNavPart="'sidenav-header'" [pipNavPartName]="'sidenav-header'"></pip-sidenav-header>
           <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
-        </pip-fixed-sidenav>
+          <ng-content select="shell-sidenav-fixed"></ng-content>
+        </pip-sidenav-fixed>
         <pip-main-content>
             <ng-content select="shell-content"></ng-content>
         </pip-main-content>
