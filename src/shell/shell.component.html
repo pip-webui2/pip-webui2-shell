@@ -1,30 +1,30 @@
-<pip-root>
-    <pip-sidenav-floating style="height: 100%">
-      <pip-nav-header></pip-nav-header>
-      <pip-nav-menu ></pip-nav-menu>
-      <ng-content select="shell-sidenav-floating"></ng-content>
-    </pip-sidenav-floating>
-    <pip-rightnav-floating style="font-family: Roboto;" fxLayout="column">
-        <ng-content select="shell-rightnav"></ng-content>
-    </pip-rightnav-floating>
-    <pip-root-content>
-      <pip-appbar [ngSwitch]="showIcon$ | async">
-        <pip-nav-icon> </pip-nav-icon>
-        <pip-breadcrumb > </pip-breadcrumb>
-        <div fxFlex="grow"></div>
-        <pip-primary-actions > </pip-primary-actions>
-        <pip-secondary-actions ></pip-secondary-actions>
-        <ng-content select="shell-appbar"></ng-content>
-      </pip-appbar>
-      <pip-main fxFlex="grow" pipContainer=".content">
-        <pip-sidenav-fixed style="height: 100%">
-          <pip-nav-header></pip-nav-header>
-          <pip-nav-menu ></pip-nav-menu>
-          <ng-content select="shell-sidenav-fixed"></ng-content>
-        </pip-sidenav-fixed>
-        <pip-main-content>
-            <ng-content select="shell-content"></ng-content>
-        </pip-main-content>
-      </pip-main>
-    </pip-root-content>
-  </pip-root>
+<pip-root-layout>
+  <pip-sidenav-floating style="height: 100%">
+    <pip-nav-header></pip-nav-header>
+    <pip-nav-menu></pip-nav-menu>
+    <ng-content select="shell-sidenav-floating"></ng-content>
+  </pip-sidenav-floating>
+  <pip-rightnav-floating style="font-family: Roboto;" fxLayout="column">
+    <ng-content select="shell-rightnav"></ng-content>
+  </pip-rightnav-floating>
+  <pip-root-content>
+    <pip-appbar [ngSwitch]="showIcon$ | async">
+      <pip-nav-icon> </pip-nav-icon>
+      <pip-breadcrumb> </pip-breadcrumb>
+      <div fxFlex="grow"></div>
+      <pip-primary-actions> </pip-primary-actions>
+      <pip-secondary-actions></pip-secondary-actions>
+      <ng-content select="shell-appbar"></ng-content>
+    </pip-appbar>
+    <pip-main-layout fxFlex="grow" pipContainer=".content">
+      <pip-sidenav-fixed style="height: 100%">
+        <pip-nav-header></pip-nav-header>
+        <pip-nav-menu></pip-nav-menu>
+        <ng-content select="shell-sidenav-fixed"></ng-content>
+      </pip-sidenav-fixed>
+      <pip-main-content>
+        <ng-content select="shell-content"></ng-content>
+      </pip-main-content>
+    </pip-main-layout>
+  </pip-root-content>
+</pip-root-layout>
