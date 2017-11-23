@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Component } from '@angular/core';
-import { PipNavPartService, SidenavHeader } from 'pip-webui2-nav';
-import { PipSidenavService, PipMediaService, MediaMainChange, PipRightnavService } from 'pip-webui2-layouts';
+import { PipNavService, NavHeaderConfig } from 'pip-webui2-nav';
+import { PipSidenavService, PipMediaService, MediaMainChange } from 'pip-webui2-layouts';
 
 @Component({
   selector: 'navparts-example',
@@ -29,37 +29,41 @@ export class NavPartsExampleComponent {
   public isMenuShown: boolean = true;
   public isHeaderShown: boolean = true;
 
-  public header: SidenavHeader = new SidenavHeader();
+  public header: NavHeaderConfig = new NavHeaderConfig();
 
   constructor(
-    private navparts: PipNavPartService,
+    private navService: PipNavService,
     private sidenav: PipSidenavService,
-    private mainMedia: PipMediaService,
-    private rightnav: PipRightnavService
+    private mainMedia: PipMediaService
   ) {
     this.mainMedia.asObservableMain().subscribe((change: MediaMainChange) => {
-      this.navparts.updateProp(this.appbarIconPartName, 'icon', change.aliases.includes('xs') || change.aliases.includes('sm') ? this.xsIcon : this.gtXsIcon);
+      this.navService.showNavIcon({
+        icon: change.aliases.includes('xs') || change.aliases.includes('sm') ? this.xsIcon : this.gtXsIcon,
+        action: () => {
+          this.sidenav.toggleNav();
+        }
+      });
     });
 
-    this.navparts.updatePartByName(this.appbarIconPartName, this.isIconShown, {
+    this.navService.showNavIcon({
       icon: this.xsIcon,
       action: () => {
         this.sidenav.toggleNav();
       }
     });
 
-    this.navparts.updatePartByName(this.appbarBreadcrumbPartName, this.isBreadcrumbShown, {
+    this.navService.showBreadcrumb({
       items: [
         { title: this.breadcrumbTitle1 },
         { title: this.breadcrumbTitle2 }
       ]
     });
 
-    this.navparts.updatePartByName(this.appbarPrimaryActionsPartName, this.isPrimaryActionsShown, {
+    this.navService.showPrimaryActions({
       actions: [
         {
           icon: 'notifications', click: () => {
-            this.rightnav.toggleRightnav();
+            console.log('clicked on "Notifications"');
           }
         },
         {
@@ -75,34 +79,36 @@ export class NavPartsExampleComponent {
       ]
     });
 
-    this.navparts.updatePartByName(this.appbarSecondaryActionsPartName, this.isSecondaryActionsShown, {
+    this.navService.showSecondaryActions({
       actions: [
         { title: 'Title 1' },
-        { title: 'Title 4' }
+        { title: 'Title 2' }
       ]
-    });
+    }
+    );
 
     this.header.title = 'Kate Negrienko';
     this.header.subtitle = 'frontend developer';
     this.header.picture = "/assets/1.png";
 
-    this.navparts.updatePartByName(this.sidenavHeaderPartName, this.isHeaderShown, _.cloneDeep(this.header));
-    this.navparts.updatePartByName(this.sidenavMenuPartName, this.isMenuShown, {
+    this.navService.showNavHeader(_.cloneDeep(this.header));
+    this.navService.showNavMenu({
       sections: [
         {
+          name: 'appbar',
           title: 'Appbar',
-          icon: 'goal',
+          //icon: 'goal',
           links: [
-            { name: 'Nav icons', title: 'Nav icons', state: 'nav_icons', icon: 'archive', url: 'appbar', controller: 'IconsController', tooltipText: 'Nav icons' },
-            { name: 'Titles', title: 'Titles', state: 'titles', icon: 'list', url: 'titles', controller: 'TitlesController' },
+            { name: 'Nav icons', title: 'Nav icons', state: 'nav_icons', icon: 'archive', url: 'appbar', tooltipText: 'Nav icons' },
+            { name: 'Titles', title: 'Titles', state: 'titles', icon: 'list', url: 'titles' },
           ]
         },
         {
-          title: 'SideNav tvh ybhjnyubj nyukbygjbnyuhbjygbh',
+          name: 'sidenav',
+          title: 'SideNav and something else',
           icon: 'area',
           links: [
-            { name: 'StickySideNav', title: 'StickySideNav ghfvdb ygbh ghbnyujnyubj  yubhj', state: 'sticky_sidenav', icon: 'backup', url: 'sticky_sidenav', controller: 'StickySideNavController' },
-            //{ name: 'Navigations', title: 'Navigations', state: 'navigations', icon: 'icons:preview', url: '/navigations', controller: 'NavigationsController', templateUrl: 'navigations.html' }
+            { name: 'StickySideNav', title: 'StickySideNav ghfvdb ygbh ghbnyujnyubj  yubhj', state: 'sticky_sidenav', icon: 'backup', url: 'sticky_sidenav'}
           ]
         }
       ]
@@ -110,52 +116,58 @@ export class NavPartsExampleComponent {
   }
 
   public ngOnInit() {
-    console.log('this.service.parts', this.navparts.parts);
+    console.log('this.service.parts', this.navService.parts);
   }
 
   public onToogleIcon(): void {
     this.isIconShown = !this.isIconShown;
-    this.navparts.changeVisibility(this.appbarIconPartName, this.isIconShown);
+    //this.navService.changeVisibility(this.appbarIconPartName, this.isIconShown);
   }
 
   public onToogleBreadcrumb(): void {
     this.isBreadcrumbShown = !this.isBreadcrumbShown;
-    this.navparts.changeVisibility(this.appbarBreadcrumbPartName, this.isBreadcrumbShown);
+    //this.navService.changeVisibility(this.appbarBreadcrumbPartName, this.isBreadcrumbShown);
   }
 
   public onTooglePrimaryActions(): void {
     this.isPrimaryActionsShown = !this.isPrimaryActionsShown;
-    this.navparts.changeVisibility(this.appbarPrimaryActionsPartName, this.isPrimaryActionsShown);
+    //this.navService.changeVisibility(this.appbarPrimaryActionsPartName, this.isPrimaryActionsShown);
   }
 
   public onToogleSecondaryActions(): void {
     this.isSecondaryActionsShown = !this.isSecondaryActionsShown;
-    this.navparts.changeVisibility(this.appbarSecondaryActionsPartName, this.isSecondaryActionsShown);
+    //this.navService.changeVisibility(this.appbarSecondaryActionsPartName, this.isSecondaryActionsShown);
   }
 
   public onChangeIcon(): void {
     this.xsIcon = this.xsIcon == 'menu' ? 'arrow_back' : 'menu';
-    this.navparts.updateProp(this.appbarIconPartName, 'icon', this.xsIcon);
+    this.navService.showNavIcon({
+      icon: this.xsIcon, action: () => {
+        this.sidenav.toggleNav();
+      }
+    });
   }
 
   public onChangeBreadcrumb(): void {
-    this.navparts.updateProp(this.appbarBreadcrumbPartName, 'items', [
-      { title: this.breadcrumbTitle1 },
-      { title: this.breadcrumbTitle2 }
-    ]);
+    this.navService.showBreadcrumb({
+      items: [
+        { title: this.breadcrumbTitle1 },
+        { title: this.breadcrumbTitle2 }
+      ]
+    });
   }
 
   public changeVisibleMenu() {
     this.isMenuShown = !this.isMenuShown;
-    this.navparts.changeVisibility(this.sidenavMenuPartName, this.isMenuShown);
+    //this.navService.changeVisibility(this.sidenavMenuPartName, this.isMenuShown);
   }
 
   public changeVisibleHeader() {
     this.isHeaderShown = !this.isHeaderShown;
-    this.navparts.changeVisibility(this.sidenavHeaderPartName, this.isHeaderShown);
+    //this.navService.changeVisibility(this.sidenavHeaderPartName, this.isHeaderShown);
   }
 
   public changeHeaderSubtitle() {
-    this.navparts.updateProps(this.sidenavHeaderPartName, _.cloneDeep(this.header));
+    this.navService.showNavHeader(_.cloneDeep(this.header));
   }
 }

@@ -1,7 +1,7 @@
 <pip-root>
     <pip-sidenav-floating style="height: 100%">
-      <pip-sidenav-header *pipNavPart="'sidenav-header'" [pipNavPartName]="'sidenav-header'"></pip-sidenav-header>
-      <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
+      <pip-nav-header></pip-nav-header>
+      <pip-nav-menu ></pip-nav-menu>
       <ng-content select="shell-sidenav-floating"></ng-content>
     </pip-sidenav-floating>
     <pip-rightnav-floating style="font-family: Roboto;" fxLayout="column">
@@ -9,17 +9,17 @@
     </pip-rightnav-floating>
     <pip-root-content>
       <pip-appbar [ngSwitch]="showIcon$ | async">
-        <pip-appbar-icon *pipNavPart="'appbar-icon'" [pipNavPartName]="'appbar-icon'"> </pip-appbar-icon>
-        <pip-appbar-breadcrumb *pipNavPart="'appbar-breadcrumb'" [pipNavPartName]="'appbar-breadcrumb'"> </pip-appbar-breadcrumb>
+        <pip-nav-icon> </pip-nav-icon>
+        <pip-breadcrumb > </pip-breadcrumb>
         <div fxFlex="grow"></div>
-        <pip-appbar-primary-actions *pipNavPart="'appbar-primary-actions'" [pipNavPartName]="'appbar-primary-actions'"> </pip-appbar-primary-actions>
-        <pip-appbar-secondary-actions *pipNavPart="'appbar-secondary-actions'" [pipNavPartName]="'appbar-secondary-actions'"></pip-appbar-secondary-actions>
+        <pip-primary-actions > </pip-primary-actions>
+        <pip-secondary-actions ></pip-secondary-actions>
         <ng-content select="shell-appbar"></ng-content>
       </pip-appbar>
       <pip-main fxFlex="grow" pipContainer=".content">
         <pip-sidenav-fixed style="height: 100%">
-          <pip-sidenav-header *pipNavPart="'sidenav-header'" [pipNavPartName]="'sidenav-header'"></pip-sidenav-header>
-          <pip-sidenav-menu *pipNavPart="'sidenav-menu'" [pipNavPartName]="'sidenav-menu'"></pip-sidenav-menu>
+          <pip-nav-header></pip-nav-header>
+          <pip-nav-menu ></pip-nav-menu>
           <ng-content select="shell-sidenav-fixed"></ng-content>
         </pip-sidenav-fixed>
         <pip-main-content>

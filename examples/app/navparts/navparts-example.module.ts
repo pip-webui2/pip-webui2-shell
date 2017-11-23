@@ -4,10 +4,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MatButtonModule, MatInputModule, MatToolbarModule } from '@angular/material';
 
-import { PipNavPartModule } from 'pip-webui2-nav';
+import { PipNavModule } from 'pip-webui2-nav';
 import { PipDocumentLayoutModule, PipShadowModule } from 'pip-webui2-layouts';
 import { NavPartsExampleComponent } from './navparts-example.component';
-import { PipNavPartService } from 'pip-webui2-nav';
+import { PipNavService } from 'pip-webui2-nav';
 
 
 @NgModule({
@@ -26,13 +26,13 @@ import { PipNavPartService } from 'pip-webui2-nav';
     PipDocumentLayoutModule,
     PipShadowModule,
 
-    PipNavPartModule
+    PipNavModule
   ],
   exports: [
     NavPartsExampleComponent
   ],
   providers: [
-    PipNavPartService
+    PipNavService
   ],
 })
 export class NavPartsExampleModule { }

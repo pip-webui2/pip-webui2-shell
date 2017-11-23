@@ -3,14 +3,14 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { PipAppbarModule, PipRightnavModule, PipMediaModule, PipSidenavModule, PipMainModule, PipRootModule } from 'pip-webui2-layouts';
-import { PipAppbarBreadcrumbModule, PipAppbarIconModule, PipAppbarPrimaryActionsModule, PipAppbarSecondaryActionsModule, PipNavPartModule, PipSidenavHeaderModule, PipSidenavMenuModule } from 'pip-webui2-nav';
+import { PipAppbarModule, PipRightnavModule, PipMediaModule, PipSidenavModule, PipMenuLayoutModule, PipRootLayoutModule } from 'pip-webui2-layouts';
+import { PipBreadcrumbModule, PipNavIconModule, PipPrimaryActionsModule, PipSecondaryActionsModule, PipNavModule, PipNavHeaderModule, PipNavMenuModule } from 'pip-webui2-nav';
 
 import { NavPartsExampleModule } from './navparts/navparts-example.module';
 import { NavPartsExampleComponent } from './navparts/navparts-example.component';
 import { AppComponent } from './app.component';
 
-import {PipShellModule} from './pip-webui2-shell';
+import { PipShellModule } from './pip-webui2-shell';
 
 const appRoutes: Routes = [
   { path: 'navparts', component: NavPartsExampleComponent },
@@ -30,18 +30,18 @@ const appRoutes: Routes = [
     PipRightnavModule,
     PipMediaModule,
     PipSidenavModule,
-    PipMainModule,
-    PipRootModule,
+    PipMenuLayoutModule,
+    PipRootLayoutModule,
 
     PipShellModule,
 
-    PipAppbarBreadcrumbModule, 
-    PipAppbarIconModule, 
-    PipAppbarPrimaryActionsModule, 
-    PipAppbarSecondaryActionsModule, 
-    PipNavPartModule, 
-    PipSidenavHeaderModule, 
-    PipSidenavMenuModule,
+    PipBreadcrumbModule,
+     PipNavIconModule, 
+     PipPrimaryActionsModule, 
+     PipSecondaryActionsModule, 
+     PipNavModule, 
+     PipNavHeaderModule, 
+     PipNavMenuModule,
 
     NavPartsExampleModule,
 
@@ -49,6 +49,6 @@ const appRoutes: Routes = [
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
