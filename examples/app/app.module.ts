@@ -10,6 +10,8 @@ import { NavPartsExampleModule } from './navparts/navparts-example.module';
 import { NavPartsExampleComponent } from './navparts/navparts-example.component';
 import { AppComponent } from './app.component';
 
+import { PipThemesModule } from 'pip-webui2-themes';
+
 import { PipShellModule } from './pip-webui2-shell';
 
 const appRoutes: Routes = [
@@ -32,6 +34,8 @@ const appRoutes: Routes = [
     PipSidenavModule,
     PipMenuLayoutModule,
     PipRootLayoutModule,
+
+    PipThemesModule,
 
     PipShellModule,
 
