@@ -1,1 +1,25 @@
-routing
+<pip-shadow visible="true" attachmentSide="top"></pip-shadow>
+<pip-shadow visible="true" attachmentSide="left"></pip-shadow>
+<pip-shadow visible="true" attachmentSide="right"></pip-shadow>
+
+<pip-card-layout fxFlex="fill"  >
+    <mat-card >
+      <h4>Sign in</h4>
+      <form class="example-form">
+        <mat-card-content fxLayout="column">
+          <mat-form-field class="example-full-width" >
+            <input matInput placeholder="Login" value="login@pipmail.com">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" >
+            <input matInput type="password" placeholder="Password">
+          </mat-form-field>
+        </mat-card-content>
+      </form>
+      <mat-slide-toggle>Remember</mat-slide-toggle>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="fill"></div>
+        <button mat-button>CANCEL</button>
+        <button mat-button>SIGN IN</button>
+      </mat-card-actions>
+    </mat-card>
+  </pip-card-layout>

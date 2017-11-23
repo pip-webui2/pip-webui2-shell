@@ -15,7 +15,7 @@ export class NavPartsExampleComponent {
   public appbarBreadcrumbPartName: string = 'appbar-breadcrumb';
   public appbarPrimaryActionsPartName: string = 'appbar-primary-actions';
   public appbarSecondaryActionsPartName: string = 'appbar-secondary-actions';
-  public breadcrumbTitle1: string = 'Navigation';
+  public breadcrumbTitle1: string = 'Signin';
   public breadcrumbTitle2: string = 'Nav items configuration';
 
   private isIconShown: boolean = true;
@@ -60,7 +60,7 @@ export class NavPartsExampleComponent {
     this.navService.showBreadcrumb({
       items: [
         { title: this.breadcrumbTitle1 },
-        { title: this.breadcrumbTitle2 }
+        //{ title: this.breadcrumbTitle2 }
       ]
     });
 
