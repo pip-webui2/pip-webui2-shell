@@ -116,7 +116,6 @@ export class NavPartsExampleComponent {
   }
 
   public ngOnInit() {
-    console.log('this.service.parts', this.navService.parts);
   }
 
   public onToogleIcon(): void {
