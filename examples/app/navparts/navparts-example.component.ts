@@ -45,8 +45,11 @@ export class NavPartsExampleComponent {
     private themesService: PipThemesService,
     private shell: ShellService
   ) {
+
+    manifestNavPartsExample.appbar.primaryActions.actions[0].click = () => { this.rightnav.toggleRightnav();};
+    manifestNavPartsExample.appbar.primaryActions.actions[1].subActions = this.generatePrimaryActionThemeList()
     this.shell.setManifest(manifestNavPartsExample);
-    
+
     this.mainMedia.asObservableMain().subscribe((change: MediaMainChange) => {
       let is = change.aliases.includes('xs') || change.aliases.includes('sm');
       this.navService.showNavIcon({
@@ -60,34 +63,6 @@ export class NavPartsExampleComponent {
     this.navService.showNavIcon({
       icon: this.gtXsIcon
     });
-
-    this.navService.showBreadcrumb({
-      items: [
-        { title: this.breadcrumbTitle1 },
-        //{ title: this.breadcrumbTitle2 }
-      ]
-    });
-
-    this.navService.showPrimaryActions({
-      actions: [
-        {
-          icon: 'notifications', click: () => {
-            this.rightnav.toggleRightnav();
-          }
-        },
-        {
-          icon: 'format_color_fill', subActions: this.generatePrimaryActionThemeList()
-        }
-      ]
-    });
-
-    this.navService.showSecondaryActions({
-      actions: [
-        { title: 'Settings' },
-        { title: 'Sign out' }
-      ]
-    }
-    );
 
   }
 
@@ -112,54 +87,6 @@ export class NavPartsExampleComponent {
     });
 
     return list;
-  }
-
-  public onToogleIcon(): void {
-    this.isIconShown = !this.isIconShown;
-    //this.navService.changeVisibility(this.appbarIconPartName, this.isIconShown);
-  }
-
-  public onToogleBreadcrumb(): void {
-    this.isBreadcrumbShown = !this.isBreadcrumbShown;
-    //this.navService.changeVisibility(this.appbarBreadcrumbPartName, this.isBreadcrumbShown);
-  }
-
-  public onTooglePrimaryActions(): void {
-    this.isPrimaryActionsShown = !this.isPrimaryActionsShown;
-    //this.navService.changeVisibility(this.appbarPrimaryActionsPartName, this.isPrimaryActionsShown);
-  }
-
-  public onToogleSecondaryActions(): void {
-    this.isSecondaryActionsShown = !this.isSecondaryActionsShown;
-    //this.navService.changeVisibility(this.appbarSecondaryActionsPartName, this.isSecondaryActionsShown);
-  }
-
-  public onChangeIcon(): void {
-    this.xsIcon = this.xsIcon == 'menu' ? 'arrow_back' : 'menu';
-    this.navService.showNavIcon({
-      icon: this.xsIcon, action: () => {
-        this.sidenav.toggleNav();
-      }
-    });
-  }
-
-  public onChangeBreadcrumb(): void {
-    this.navService.showBreadcrumb({
-      items: [
-        { title: this.breadcrumbTitle1 },
-        { title: this.breadcrumbTitle2 }
-      ]
-    });
-  }
-
-  public changeVisibleMenu() {
-    this.isMenuShown = !this.isMenuShown;
-    //this.navService.changeVisibility(this.sidenavMenuPartName, this.isMenuShown);
-  }
-
-  public changeVisibleHeader() {
-    this.isHeaderShown = !this.isHeaderShown;
-    //this.navService.changeVisibility(this.sidenavHeaderPartName, this.isHeaderShown);
   }
 
 }

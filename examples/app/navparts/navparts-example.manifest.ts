@@ -1,5 +1,5 @@
 import { ShellManifest } from '../pip-webui2-shell';
-export const manifestNavPartsExample: ShellManifest = {
+export let manifestNavPartsExample: ShellManifest = {
   nav: {
     header: {
       title: 'Kate Negrienko',
@@ -28,5 +28,30 @@ export const manifestNavPartsExample: ShellManifest = {
       ]
     }
   },
-  appbar: {}
+  appbar: {
+    breadcrumbs: {
+      items: [
+        { title: "Signin" },
+        //{ title: this.breadcrumbTitle2 }
+      ]
+    },
+    primaryActions: {
+      actions: [
+        {
+          icon: 'notifications',
+          click: () => {}
+        },
+        {
+          icon: 'format_color_fill'
+        }
+      ]
+    },
+    secondaryActions: {
+      actions: [
+        { title: 'Settings' },
+        { title: 'Sign out' }
+      ]
+    }
+
+  }
 }

@@ -40,12 +40,16 @@ export class ShellService {
                 }
             }
 
+            if (manifest.appbar.breadcrumbs != this.manifest.appbar.breadcrumbs) {
+                this.service.showBreadcrumb(manifest.appbar.breadcrumbs);
+            }
+
         }
         if (manifest.nav != this.manifest.nav && manifest.nav) {
             if (manifest.nav.header != this.manifest.nav.header) {
                 this.service.showNavHeader(manifest.nav.header);
             }
-            
+
             if (manifest.nav.menu != this.manifest.nav.menu) {
                 this.service.showNavMenu(manifest.nav.menu);
             }

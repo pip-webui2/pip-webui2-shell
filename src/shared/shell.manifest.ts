@@ -13,6 +13,7 @@ export class ShellAppbarManifest {
     public primaryActions?: PrimaryActionsConfig;
     public icon?: NavIconConfig;
     public secondaryActions?: SecondaryActionsConfig;
+    public breadcrumbs?: BreadcrumbConfig;
 }
 
 export class ShellManifest {
