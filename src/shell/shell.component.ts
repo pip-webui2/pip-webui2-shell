@@ -11,4 +11,6 @@ export class PipShellComponent {
     public constructor( public media: PipMediaService) {
         media.activate();
     }
+
+    public 
 }

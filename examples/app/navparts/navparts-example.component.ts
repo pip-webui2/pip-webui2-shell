@@ -4,6 +4,8 @@ import { PipNavService, NavHeaderConfig, PrimaryActionsConfig } from 'pip-webui2
 import { PipSidenavService, PipMediaService, MediaMainChange, PipRightnavService } from 'pip-webui2-layouts';
 
 import { PipThemesService, Theme } from 'pip-webui2-themes';
+import { ShellService } from '../pip-webui2-shell';
+import { manifestNavPartsExample } from './navparts-example.manifest';
 
 @Component({
   selector: 'navparts-example',
@@ -31,7 +33,6 @@ export class NavPartsExampleComponent {
   public isMenuShown: boolean = true;
   public isHeaderShown: boolean = true;
 
-  public header: NavHeaderConfig = new NavHeaderConfig();
 
   public themes: Theme[];
   public selectedTheme: Theme;
@@ -41,8 +42,11 @@ export class NavPartsExampleComponent {
     private sidenav: PipSidenavService,
     private rightnav: PipRightnavService,
     private mainMedia: PipMediaService,
-    private themesService: PipThemesService
+    private themesService: PipThemesService,
+    private shell: ShellService
   ) {
+    this.shell.setManifest(manifestNavPartsExample);
+    
     this.mainMedia.asObservableMain().subscribe((change: MediaMainChange) => {
       let is = change.aliases.includes('xs') || change.aliases.includes('sm');
       this.navService.showNavIcon({
@@ -85,32 +89,6 @@ export class NavPartsExampleComponent {
     }
     );
 
-    this.header.title = 'Kate Negrienko';
-    this.header.subtitle = 'frontend developer';
-    this.header.picture = "/assets/girl.png";
-
-    this.navService.showNavHeader(_.cloneDeep(this.header));
-    this.navService.showNavMenu({
-      sections: [
-        {
-          name: 'appbar',
-          title: 'Appbar',
-          //icon: 'goal',
-          links: [
-            { name: 'Nav icons', title: 'Nav icons', state: 'nav_icons', icon: 'archive', url: 'appbar', tooltipText: 'Nav icons' },
-            { name: 'Titles', title: 'Titles', state: 'titles', icon: 'list', url: 'titles' },
-          ]
-        },
-        {
-          name: 'sidenav',
-          title: 'SideNav and something else',
-          icon: 'area',
-          links: [
-            { name: 'StickySideNav', title: 'StickySideNav ghfvdb ygbh ghbnyujnyubj  yubhj', state: 'sticky_sidenav', icon: 'backup', url: 'sticky_sidenav' }
-          ]
-        }
-      ]
-    });
   }
 
   private selectTheme(selectedTheme) {
@@ -184,7 +162,4 @@ export class NavPartsExampleComponent {
     //this.navService.changeVisibility(this.sidenavHeaderPartName, this.isHeaderShown);
   }
 
-  public changeHeaderSubtitle() {
-    this.navService.showNavHeader(_.cloneDeep(this.header));
-  }
 }

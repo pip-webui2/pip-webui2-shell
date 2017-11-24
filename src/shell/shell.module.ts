@@ -7,6 +7,7 @@ import { PipAppbarModule, PipRightnavModule, PipMediaModule, PipSidenavModule, P
 import { PipBreadcrumbModule, PipNavIconModule, PipPrimaryActionsModule, PipSecondaryActionsModule, PipNavModule, PipNavHeaderModule, PipNavMenuModule } from 'pip-webui2-nav';
 
 import { PipShellComponent } from './shell.component';
+import { ShellService } from '../shared/shell.service';
 
 @NgModule({
   declarations: [
@@ -25,18 +26,18 @@ import { PipShellComponent } from './shell.component';
     PipRootLayoutModule,
     PipSidenavExpanderModule,
 
-    PipBreadcrumbModule, 
-    PipNavIconModule, 
-    PipPrimaryActionsModule, 
-    PipSecondaryActionsModule, 
-    PipNavModule, 
-    PipNavHeaderModule, 
+    PipBreadcrumbModule,
+    PipNavIconModule,
+    PipPrimaryActionsModule,
+    PipSecondaryActionsModule,
+    PipNavModule,
+    PipNavHeaderModule,
     PipNavMenuModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     PipShellComponent
   ],
-  providers: [],
+  providers: [ShellService],
 })
 export class PipShellModule { }
