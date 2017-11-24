@@ -7,6 +7,7 @@ import {
 export class ShellNavManifest {
     public header?: NavHeaderConfig;
     public menu?: NavMenuConfig;
+    public visible: boolean;
 }
 
 export class ShellAppbarManifest {
@@ -14,6 +15,7 @@ export class ShellAppbarManifest {
     public icon?: NavIconConfig;
     public secondaryActions?: SecondaryActionsConfig;
     public breadcrumbs?: BreadcrumbConfig;
+    public visible: boolean;
 }
 
 export class ShellManifest {
